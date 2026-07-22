@@ -1,6 +1,8 @@
+import { getMe } from "@/service/getMe";
 
 
-export default function Home() {
+export default async function Home() {
+  const user = await getMe();
   return (
       <div>
         Hello World
