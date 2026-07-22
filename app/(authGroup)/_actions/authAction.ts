@@ -49,3 +49,37 @@ export const loginAction = async (
 
   return result;
 };
+
+type RegisterState = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+};
+
+export const registerAction = async (
+  prevState: RegisterState,
+  formData: FormData,
+) => {
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const profilePhoto = formData.get("profilePhoto");
+
+  const payload = {
+    name,
+    email,
+    password,
+    profilePhoto,
+  };
+
+  const res = await fetch(`${process.env.BACKEND_API_URL}/api/users/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+  const result = await res.json();
+
+  return result;
+};

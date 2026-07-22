@@ -2,29 +2,30 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { loginAction } from "../_actions/authAction";
+import { registerAction } from "../_actions/authAction";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const LoginForm = () => {
-  const [state, action, pending] = useActionState(loginAction, false);
+const RegisterForm = () => {
+  const [state, action, pending] = useActionState(registerAction, false);
   const router = useRouter();
-  useEffect(()=> {
-    if(!state) return;
-    if(state.success){
+  useEffect(() => {
+    if (!state) return;
+    if (state.success) {
       toast.success(state.message);
-      router.push("/dashboard");
+      router.push("/login");
     }
-    if(!state.success){
+    if (!state.success) {
       toast.error(state.message);
     }
-  },[router, state])
+  }, [router, state]);
 
   return (
     <form action={action} className="space-y-4">
-      <Card className="p-5 space-y-4 ">
+      <Card className="p-5 space-y-4">
+        <Input name="name" type="text" placeholder="Enter your name" required />
         <Input
           name="email"
           type="email"
@@ -37,13 +38,12 @@ const LoginForm = () => {
           placeholder="Enter your password"
           required
         />
-        <Button type="submit">
-          {pending ? "Logging in..." : "Login"}
-        </Button>
+        <Input name="profilePhoto" type="url" placeholder="Profile photo URL" />
+        <Button type="submit">{pending ? "Registering..." : "Register"}</Button>
           <p className="text-center text-sm text-gray-500">
-          Don`t have an account?{" "}
-          <Link href="/register" className="text-blue-600 hover:underline">
-            Register
+          Already have an account?{" "}
+          <Link href="/login" className="text-blue-600 hover:underline">
+            Login
           </Link>
         </p>
 
@@ -52,4 +52,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
