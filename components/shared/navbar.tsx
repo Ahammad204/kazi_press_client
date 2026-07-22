@@ -13,17 +13,51 @@ import {
 
 import { ChevronDown } from "lucide-react";
 import { navItems, userMenuItems } from "@/lib/nav-config";
+import { logout } from "@/service/logout";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-const userName = "John Doe";
-const userEmail = "john@example.com";
+type IUser = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+    profile: {
+      id: string;
+      name: string;
+      email: string;
+      activeStatus: string;
+      role: string;
+      createdAt: string;
+      updatedAt: string;
+      profile: {
+        id: string;
+        profilePhoto: string;
+        bio: string | null;
+        userId: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
+  };
+};
 
-export function Navbar() {
-  const handleUserAction = (action: string) => {
+type NavbarProps = {
+  user: IUser;
+};
+
+export function Navbar({ user }: NavbarProps) {
+  const [isLogout, setIsLogout] = useState(false);
+  const router = useRouter();
+  const handleUserAction = async (action: string) => {
     console.log(`User action: ${action}`);
     switch (action) {
       case "logout":
         // Handle logout
         console.log("Logging out...");
+        await logout();
+        setIsLogout(true);
         break;
       case "profile":
         // Navigate to profile
@@ -41,6 +75,16 @@ export function Navbar() {
         break;
     }
   };
+
+  useEffect(() => {
+    if (isLogout) {
+      toast.success("User Logged out successfully");
+      router.push("/login");
+    }
+  }, [isLogout, router]);
+
+  const userName = `${user.data?.profile?.name}`;
+  const userEmail = `${user.data?.profile?.email}`;
 
   return (
     <nav className="border-b border-border bg-background sticky top-0 z-50">
@@ -72,7 +116,9 @@ export function Navbar() {
           </div>
 
           {/* User Dropdown */}
-          <div className="shrink-0">
+            {
+              user.success ? (
+                   <div className="shrink-0">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-2 px-3 py-2 rounded-md border border-input hover:bg-accent transition-colors text-sm font-medium">
@@ -104,7 +150,7 @@ export function Navbar() {
                   {userMenuItems.map((item) => (
                     <DropdownMenuItem
                       key={item.action}
-                      onClick={() => handleUserAction(item.action)}
+                      onClick={async () => await handleUserAction(item.action)}
                       className={item.isDangerous ? "text-destructive" : ""}
                     >
                       {item.label}
@@ -114,6 +160,8 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+              ) : <Link href="/login" ><Button>Login</Button></Link>
+            }
         </div>
       </div>
     </nav>
