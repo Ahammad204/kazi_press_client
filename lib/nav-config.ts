@@ -1,9 +1,10 @@
 import {
   Home,
-  BarChart3,
   Settings,
   HelpCircle,
   LucideIcon,
+  Newspaper,
+  Gem,
 } from "lucide-react";
 
 export interface NavItem {
@@ -29,13 +30,13 @@ export const navItems: NavItem[] = [
   {
     label: "News",
     href: "/news",
-    icon: BarChart3,
+    icon: Newspaper,
     description: "View news",
   },
   {
     label: "Premium",
     href: "/premium",
-    icon: Settings,
+    icon: Gem,
     description: "View premium content",
   },
   {
