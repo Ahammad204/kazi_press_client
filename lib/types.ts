@@ -29,7 +29,7 @@ export type IPost = {
   status: IPostStatus;
   tags: string[];
   views: number;
-  isPremium: boolean;
+  IsPremium: boolean;
   authorId: string;
   author?: IAuthor;
   comments?: IComment[];

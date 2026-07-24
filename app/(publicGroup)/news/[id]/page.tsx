@@ -29,7 +29,7 @@ const NewsByIdPage = async ({
     <div className="mx-auto max-w-4xl space-y-8 px-4 py-10 sm:px-6 lg:px-8">
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          {post.isPremium && (
+          {post.IsPremium && (
             <Badge variant="default">Premium</Badge>
           )}
           {post.tags?.map((tag) => (
