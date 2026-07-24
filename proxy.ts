@@ -18,8 +18,6 @@ export async function proxy(request: NextRequest) {
     const cookieStore = await cookies();
     // const accessToken = cookieStore.get("accessToken")?.value;
 
-    
-
     let accessToken = request.cookies.get("accessToken")?.value;
     const refreshToken = request.cookies.get("refreshToken")?.value;
 

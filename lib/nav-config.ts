@@ -27,16 +27,16 @@ export const navItems: NavItem[] = [
     description: "Go to dashboard",
   },
   {
-    label: "Analytics",
-    href: "/analytics",
+    label: "News",
+    href: "/news",
     icon: BarChart3,
-    description: "View analytics",
+    description: "View news",
   },
   {
-    label: "Settings",
-    href: "/settings",
+    label: "Premium",
+    href: "/premium",
     icon: Settings,
-    description: "Manage settings",
+    description: "View premium content",
   },
   {
     label: "Help",
