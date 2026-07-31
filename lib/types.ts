@@ -39,3 +39,5 @@ export type IPost = {
   createdAt: string;
   updatedAt: string;
 };
+
+

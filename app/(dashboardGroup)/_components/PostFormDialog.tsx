@@ -95,7 +95,7 @@ export function PostFormDialog({ mode, post }: PostFormDialogProps) {
                         />
                     </div>
                     <Label className="flex items-center gap-2">
-                        <Checkbox name="isPremium" defaultChecked={post?.isPremium} />
+                        <Checkbox name="isPremium" defaultChecked={post?.IsPremium} />
                         Mark as premium content
                     </Label>
                     <DialogFooter>

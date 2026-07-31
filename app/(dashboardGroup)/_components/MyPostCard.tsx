@@ -18,7 +18,7 @@ export function MyPostCard({ post }: MyPostCardProps) {
                 <div className="flex flex-wrap items-center gap-1.5">
                     <Badge variant="outline">{post.status}</Badge>
                     {
-                        post.isPremium && (
+                        post.IsPremium && (
                             <Badge>
                                 <SparklesIcon data-icon="inline-start" />
                                 Premium
