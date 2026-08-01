@@ -9,8 +9,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 const LoginForm = () => {
-    const searchParams = useSearchParams();
-    const redirectTo = searchParams.get("redirectTo") ?? ""
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirectTo") ?? "";
   const [state, action, pending] = useActionState(
     loginAction.bind(null, redirectTo),
     false,
