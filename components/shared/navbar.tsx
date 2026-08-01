@@ -59,9 +59,17 @@ export function Navbar({ user }: NavbarProps) {
         await logout();
         setIsLogout(true);
         break;
-      case "profile":
-        // Navigate to profile
-        console.log("Going to profile...");
+      case "dashboard":
+        // Navigate to dashboard
+        console.log("Going to dashboard...");
+        console.log(user.data?.profile?.role)
+        if (user.data?.profile?.role === "AUTHOR") {
+          router.push("/author-dashboard");
+        }else if (user.data?.profile?.role === "ADMIN") {
+          router.push("/admin-dashboard");
+        } else {
+          router.push("/dashboard");
+        }
         break;
       case "preferences":
         // Navigate to preferences

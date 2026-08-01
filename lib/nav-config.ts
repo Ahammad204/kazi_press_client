@@ -49,8 +49,8 @@ export const navItems: NavItem[] = [
 
 export const userMenuItems: UserMenuItem[] = [
   {
-    label: "Profile",
-    action: "profile",
+    label: "dashboard",
+    action: "dashboard",
   },
   {
     label: "Preferences",
